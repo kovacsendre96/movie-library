@@ -1,9 +1,9 @@
 import React from 'react';
 
-const FavouritesPage = () => {
+const FavouritesPageView = () => {
   return (
     <div>FavouritesPage</div>
   )
 }
 
-export default FavouritesPage;
+export default FavouritesPageView;
