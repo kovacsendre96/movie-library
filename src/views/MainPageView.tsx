@@ -1,9 +1,11 @@
-import React from 'react';
+import React from "react";
 
 const MainPageView = () => {
   return (
-    <div>MainPageView</div>
-  )
-}
+    <div className="text-center">
+      <div>MainPageView</div>
+    </div>
+  );
+};
 
 export default MainPageView;

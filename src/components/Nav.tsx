@@ -1,41 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavBar } from "../interfaces/NavBar";
 import logo from "../assets/images/logo2.png";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import i18n from "i18next";
 
 const Nav = () => {
+  const [showMenu, setShowMenu] = useState(false);
+
+  const { t } = useTranslation();
+
   const navBarPieces: NavBar[] = [
     {
-      name: "Főmenü",
+      name: "Main Menu",
       path: "main-page",
     },
     {
-      name: "Kedvencek",
+      name: "Favourites",
       path: "favourites-page",
     },
     {
-      name: "Filmek",
+      name: "Movies",
       path: "movies-page",
     },
     {
-      name: "Sorozatok",
+      name: "Series",
       path: "series-page",
     },
   ];
 
   return (
     <div>
-      <div className="flex justify-center my-3">
-        <img className="w-80 cursor-pointer" src={logo} alt="logo" />
-      </div>
-      <div className="flex justify-evenly">
-        {navBarPieces.map((item) => (
-          <div className="cursor-pointer p-2 hover:bg-[#d3d3d3]  ease-in duration-300">
-            {" "}
-            <Link to={item.path}>{item.name}</Link>
-          </div>
-        ))}
-      </div>
+      {navBarPieces.map((item) => (
+        <div className="cursor-pointer p-2 hover:bg-gray-200 ease-in duration-300 font-bold">
+          <Link to={item.path}>{t(item.name)}</Link>
+        </div>
+      ))}
+      <select
+        className="top-20 right-0"
+        onChange={(e) => i18n.changeLanguage(e.target.value)}
+      >
+        <option value="hu">HU</option>
+        <option value="en">EN</option>
+      </select>
     </div>
   );
 };
