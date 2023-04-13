@@ -1,8 +1,11 @@
 import React from 'react';
+import MovieListView from './MovieListView';
 
 const MoviesPageView = () => {
   return (
-    <div>MoviesPageView</div>
+    <div>
+      <MovieListView />
+    </div>
   )
 }
 
