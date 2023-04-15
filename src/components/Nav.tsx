@@ -31,18 +31,25 @@ const Nav = () => {
 
   return (
     <div>
-      {navBarPieces.map((item) => (
-        <div className="cursor-pointer p-2 hover:bg-gray-200 ease-in duration-300 font-bold">
-          <Link to={item.path}>{t(item.name)}</Link>
-        </div>
-      ))}
-      <select
-        className="top-20 right-0"
-        onChange={(e) => i18n.changeLanguage(e.target.value)}
-      >
-        <option value="hu">HU</option>
-        <option value="en">EN</option>
-      </select>
+      <div className="flex justify-center my-3">
+        <Link to={"main-page"}>
+          <img className="w-80 cursor-pointer" src={logo} alt="logo" />
+        </Link>
+      </div>
+      <div className="flex justify-evenly">
+        {navBarPieces.map((item) => (
+          <div className="cursor-pointer p-2 hover:bg-gray-200 ease-in duration-300 font-bold">
+            <Link to={item.path}>{t(item.name)}</Link>
+          </div>
+        ))}
+        <select
+          className="top-20 right-0"
+          onChange={(e) => i18n.changeLanguage(e.target.value)}
+        >
+          <option value="hu">HU</option>
+          <option value="en">EN</option>
+        </select>
+      </div>
     </div>
   );
 };
