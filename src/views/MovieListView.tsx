@@ -2,17 +2,17 @@ import React, { useEffect, useState } from "react";
 import MovieService from "../services/movieService";
 import Movie from "../models/Movie";
 import MovieCard from "../components/common/MovieCard";
-import ApiService from "../services/MovieDBService";
+import TMDBService from "../services/tmdbService";
 
 const MovieListView = () => {
   const [movies, setMoives] = useState<Movie[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   const movieListService = new MovieService();
-  const apiService = new ApiService();
+  const tmdbService = new TMDBService();
 
   async function getApi() {
-    const api = await apiService.search("star", "hu")
+    const api = await tmdbService.search("star", "hu")
     console.log(api);
   }
 
@@ -31,7 +31,10 @@ const MovieListView = () => {
   return (
     <div className="flex h-full">
       <button onClick={getApi}>klikk</button>
-      <MovieCard movies={movies} loading={loading} />
+      {!loading &&
+        movies.map((movie) => (
+      <MovieCard key={movie.id} movie={movie}/>
+        ))}
     </div>
   );
 };

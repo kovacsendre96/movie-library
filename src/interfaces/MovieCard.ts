@@ -1,6 +1,6 @@
+import React from "react";
 import Movie from "../models/Movie";
 
 export interface MovieCardProps {
-    movies: Movie[];
-    loading: boolean;
-  }
+  movie: Movie;
+}
