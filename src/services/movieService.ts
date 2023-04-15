@@ -1,9 +1,9 @@
 import axios from "axios";
 import Movie from "../models/Movie";
 
-export default class MovieService {
-  baseURL = "http://localhost:8000";
 
+export default class MovieService {
+  baseURL = import.meta.env.VITE_BASE_URL;
   async index() {
     return axios
       .get(`${this.baseURL}/api/movie-list`)

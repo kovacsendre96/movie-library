@@ -1,7 +1,5 @@
 import axios from "axios";
 
-
-
 export default class ApiService {
   baseURL = "https://api.themoviedb.org/3/search/movie";
   token = "02406a5eb63a0335773be986542f933e";

@@ -38,12 +38,11 @@ const Nav = () => {
       </div>
       <div className="flex justify-evenly">
         {navBarPieces.map((item) => (
-          <div className="cursor-pointer p-2 hover:bg-gray-200 ease-in duration-300 font-bold">
+          <div key={item.path} className="cursor-pointer p-2 hover:bg-gray-200 ease-in duration-300 font-bold">
             <Link to={item.path}>{t(item.name)}</Link>
           </div>
         ))}
         <select
-          className="top-20 right-0"
           onChange={(e) => i18n.changeLanguage(e.target.value)}
         >
           <option value="hu">HU</option>
