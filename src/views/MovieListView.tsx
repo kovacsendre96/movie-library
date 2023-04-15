@@ -1,44 +1,40 @@
-import React from "react";
-import movieimg from "../assets/images/movie.png";
+import React, { useEffect, useState } from "react";
+import MovieService from "../services/movieService";
+import Movie from "../models/Movie";
+import MovieCard from "../components/common/MovieCard";
+import TMDBService from "../services/tmdbService";
 
 const MovieListView = () => {
-  const movies = [
-    {
-      title: "Heathers",
-      rating: "4.5 stars",
-      description:
-        " Lorem ipsum dolor sit amet consectetur, adipisicing elit. ",
-    },
-    {
-      title: "Europa Report",
-      rating: "2.5 stars",
-      description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. ",
-    },
-    {
-      title: "Fellowship of the Ring",
-      rating: "5 stars",
-      description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. ",
-    },
-    {
-      title: "Silver Linings Playbook",
-      rating: "5 stars",
-      description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. ",
-    },
-  ];
+  const [movies, setMoives] = useState<Movie[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  const movieListService = new MovieService();
+  const tmdbService = new TMDBService();
+
+  async function getApi() {
+    const api = await tmdbService.search("star", "hu")
+    console.log(api);
+  }
+
+  async function getMovies() {
+    const movieList = await movieListService.index();
+    setMoives(movieList);
+    setLoading(false);
+  }
+
+  useEffect(() => {
+    getMovies();
+  }, []);
+
+
 
   return (
     <div className="flex h-full">
-      {movies.map((movie) => (
-        <div className="w-60 h-50 border-solid border-2 border-black">
-          <div>
-            <h4 className="flex justify-center font-bold">{movie.title}</h4>
-            <div className="flex">
-              <img className="w-40 h-20" src={movieimg} alt="" />
-              {movie.description}
-            </div>
-          </div>
-        </div>
-      ))}
+      <button onClick={getApi}>klikk</button>
+      {!loading &&
+        movies.map((movie) => (
+      <MovieCard key={movie.id} movie={movie}/>
+        ))}
     </div>
   );
 };
