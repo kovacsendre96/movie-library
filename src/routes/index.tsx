@@ -6,6 +6,7 @@ import FavouritesPageView from "../views/FavouritesPageView";
 import MoviesPageView from "../views/MoviesPageView";
 import SeriesPageView from "../views/SeriesPageView";
 import MainPageView from "../views/MainPageView";
+import SearchPageView from "../views/SearchPageView";
 
 
 
@@ -30,6 +31,10 @@ export const router  = createBrowserRouter([
       {
         path: "series-page",
         element: <SeriesPageView />,
+      },
+      {
+        path: "search-page",
+        element: <SearchPageView />,
       },
     ],
   },
