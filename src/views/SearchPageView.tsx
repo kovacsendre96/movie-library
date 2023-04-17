@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { MdSearch } from "react-icons/md";
-import TMDBService from "../services/tmdbService";
+import TMDBService from "../services/TMDBService";
 import Movie from "../models/Movie";
 import { useTranslation } from "react-i18next";
 import i18n from "../i18n";
+import MovieCard from "../components/common/MovieCard";
 
 const SearchPageView = () => {
   const { t }: { t: (key: string) => string } = useTranslation();
@@ -31,29 +32,11 @@ const SearchPageView = () => {
         <MdSearch className="text-3xl bg-white border shadow shadow-black" />
       </div>
       {searchedMovies.length > 0 ? (
-        <div>
+        <div className="flex overflow-auto items-center">
           {searchedMovies
             .sort((a, b) => b.popularity - a.popularity)
             .map((movie) => (
-              <div className="flex">
-                <div className="w-70 h-60 border-solid border-2 border-black mx-2">
-                  <div className="flex flex-col">
-                    <h4 className="flex justify-center font-bold">
-                      {movie.title}
-                    </h4>
-                    <div className="flex">
-                      <img
-                        className="w-auto h-40"
-                        src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                        alt=""
-                      />
-                      <h5 className="h-20 overflow-auto">
-                        {movie.release_date.substring(0, 4)}
-                      </h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <MovieCard movie={movie} />
             ))}
         </div>
       ) : (

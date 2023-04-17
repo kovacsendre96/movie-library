@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import MovieService from "../services/movieService";
 import Movie from "../models/Movie";
 import MovieCard from "../components/common/MovieCard";
-import TMDBService from "../services/tmdbService";
+import TMDBService from "../services/TMDBService";
 
 const MovieListView = () => {
   const [movies, setMoives] = useState<Movie[]>([]);

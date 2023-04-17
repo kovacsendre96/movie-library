@@ -51,7 +51,7 @@ const Nav = () => {
          
         >
           <div className="text-xl cursor-pointer p-1 hover:bg-gray-200 ease-in duration-300 font-bold">
-          Keresés
+          {t("Search")}
           </div>
         </Link>
         <select onChange={(e) => i18n.changeLanguage(e.target.value)}>
