@@ -4,9 +4,10 @@ import logo from "../assets/images/logo2.png";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import i18n from "i18next";
+import { MdSearch } from "react-icons/md";
+import SearchPageView from "../views/SearchPageView";
 
 const Nav = () => {
-  const [showMenu, setShowMenu] = useState(false);
 
   const { t } = useTranslation();
 
@@ -38,13 +39,22 @@ const Nav = () => {
       </div>
       <div className="flex justify-evenly">
         {navBarPieces.map((item) => (
-          <div key={item.path} className="cursor-pointer p-2 hover:bg-gray-200 ease-in duration-300 font-bold">
+          <div
+            key={item.path}
+            className="cursor-pointer p-2 hover:bg-gray-200 ease-in duration-300 font-bold"
+          >
             <Link to={item.path}>{t(item.name)}</Link>
           </div>
         ))}
-        <select
-          onChange={(e) => i18n.changeLanguage(e.target.value)}
+        <Link
+          to={"search-page"}
+         
         >
+          <div className="text-xl cursor-pointer p-1 hover:bg-gray-200 ease-in duration-300 font-bold">
+          {t("Search")}
+          </div>
+        </Link>
+        <select onChange={(e) => i18n.changeLanguage(e.target.value)}>
           <option value="hu">HU</option>
           <option value="en">EN</option>
         </select>

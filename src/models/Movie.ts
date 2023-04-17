@@ -9,4 +9,5 @@ export default class Movie {
     rate = 0;
     opinion = "";
     movie_id = 0;
+  popularity: any;
   }

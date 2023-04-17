@@ -2,6 +2,9 @@
     "Main Menu": "Főmenü",
     "Favourites": "Kedvencek",
     "Movies": "Filmek",
-    "Series": "Sorozatok"
+    "Series": "Sorozatok",
+    "Search": "Keresés",
+    "Type the movie...": "Írd be a filmet",
+    "There are currently no results": "Jelenleg nincs találat"
 
 }
