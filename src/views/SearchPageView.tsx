@@ -22,7 +22,7 @@ const SearchPageView = () => {
 
   return (
     <div>
-      <div className="flex p-2">
+      <div className="flex justify-center">
         <input
           onChange={getApi}
           type="search"
@@ -40,7 +40,7 @@ const SearchPageView = () => {
             ))}
         </div>
       ) : (
-        <div>{t("There are currently no results")}</div>
+        <div className="flex justify-center">{t("There are currently no results")}</div>
       )}
     </div>
   );

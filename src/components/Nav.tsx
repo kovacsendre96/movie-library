@@ -5,11 +5,12 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import i18n from "i18next";
 import { MdSearch } from "react-icons/md";
+import { GiHamburgerMenu } from "react-icons/gi";
 import SearchPageView from "../views/SearchPageView";
 
 const Nav = () => {
-
   const { t } = useTranslation();
+  const [isOpen, setIsOpen] = useState(false);
 
   const navBarPieces: NavBar[] = [
     {
@@ -37,7 +38,19 @@ const Nav = () => {
           <img className="w-80 cursor-pointer" src={logo} alt="logo" />
         </Link>
       </div>
-      <div className="flex justify-evenly">
+      <div className="flex justify-between md:hidden">
+        <button
+          className="p-2 rounded-md text-gray-700 hover:cursor-pointer text-2xl"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          <GiHamburgerMenu/>
+        </button>
+      </div>
+      <div
+        className={`${
+          isOpen ? "block" : "hidden"
+        } md:flex justify-evenly mt-4`}
+      >
         {navBarPieces.map((item) => (
           <div
             key={item.path}
@@ -46,12 +59,9 @@ const Nav = () => {
             <Link to={item.path}>{t(item.name)}</Link>
           </div>
         ))}
-        <Link
-          to={"search-page"}
-         
-        >
+        <Link to={"search-page"}>
           <div className="text-xl cursor-pointer p-1 hover:bg-gray-200 ease-in duration-300 font-bold">
-          {t("Search")}
+            {t("Search")}
           </div>
         </Link>
         <select onChange={(e) => i18n.changeLanguage(e.target.value)}>
