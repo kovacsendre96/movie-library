@@ -28,7 +28,7 @@ const MovieDetails = () => {
           <h3 className="text-3xl font-bold">{movieDetails?.title}</h3>
           <div className="flex">
             {movieDetails?.genres.map((genre) => (
-              <div className="mx-4">{genre.name}</div>
+              <div key={genre.id} className="mx-4">{genre.name}</div>
             ))}
           </div>
           <div className="flex">

@@ -7,7 +7,7 @@ import MoviesPageView from "../views/MoviesPageView";
 import SeriesPageView from "../views/SeriesPageView";
 import MainPageView from "../views/MainPageView";
 import SearchPageView from "../views/SearchPageView";
-import MovieDetails from "../components/MovieDetails";
+import MovieDetails from "../views/MovieDetails";
 
 
 

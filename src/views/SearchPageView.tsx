@@ -32,7 +32,7 @@ const SearchPageView = () => {
         <MdSearch className="text-3xl bg-white border shadow shadow-black" />
       </div>
       {searchedMovies.length > 0 ? (
-        <div className="flex overflow-auto items-center">
+        <div className="flex flex-wrap justify-center">
           {searchedMovies
             .sort((a, b) => b.popularity - a.popularity)
             .map((movie) => (
