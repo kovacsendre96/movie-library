@@ -15,7 +15,7 @@ const SearchPageView = () => {
   async function getApi(e: React.ChangeEvent<HTMLInputElement>) {
     const api = await tmdbService.search(
       e.target.value,
-      i18n.language === "hu" ? "hu" : "en"
+      i18n.language
     );
     setSearchedMovies(api.results);
   }
@@ -32,11 +32,11 @@ const SearchPageView = () => {
         <MdSearch className="text-3xl bg-white border shadow shadow-black" />
       </div>
       {searchedMovies.length > 0 ? (
-        <div className="flex overflow-auto items-center">
+        <div className="flex flex-wrap justify-center">
           {searchedMovies
             .sort((a, b) => b.popularity - a.popularity)
             .map((movie) => (
-            <MovieCard movie={movie} />
+            <MovieCard key={movie.id} movie={movie} />
             ))}
         </div>
       ) : (
