@@ -15,7 +15,7 @@ const SearchPageView = () => {
   async function getApi(e: React.ChangeEvent<HTMLInputElement>) {
     const api = await tmdbService.search(
       e.target.value,
-      i18n.language === "hu" ? "hu" : "en"
+      i18n.language
     );
     setSearchedMovies(api.results);
   }
@@ -36,7 +36,7 @@ const SearchPageView = () => {
           {searchedMovies
             .sort((a, b) => b.popularity - a.popularity)
             .map((movie) => (
-            <MovieCard movie={movie} />
+            <MovieCard key={movie.id} movie={movie} />
             ))}
         </div>
       ) : (

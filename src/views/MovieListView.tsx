@@ -5,16 +5,13 @@ import MovieCard from "../components/common/MovieCard";
 import TMDBService from "../services/TMDBService";
 
 const MovieListView = () => {
-  const [movies, setMoives] = useState<Movie[]>([]);
+  const [movies, setMovies] = useState<Movie[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const movieListService = new MovieService();
 
-
- 
-
   async function getMovies() {
     const movieList = await movieListService.index();
-    setMoives(movieList);
+    setMovies(movieList);
     setLoading(false);
   }
 
@@ -22,15 +19,10 @@ const MovieListView = () => {
     getMovies();
   }, []);
 
-
-
   return (
     <div className="flex h-full">
-     
       {!loading &&
-        movies.map((movie) => (
-      <MovieCard key={movie.id} movie={movie}/>
-        ))}
+        movies.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
     </div>
   );
 };

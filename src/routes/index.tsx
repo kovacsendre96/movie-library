@@ -7,6 +7,7 @@ import MoviesPageView from "../views/MoviesPageView";
 import SeriesPageView from "../views/SeriesPageView";
 import MainPageView from "../views/MainPageView";
 import SearchPageView from "../views/SearchPageView";
+import MovieDetails from "../components/MovieDetails";
 
 
 
@@ -35,6 +36,10 @@ export const router  = createBrowserRouter([
       {
         path: "search-page",
         element: <SearchPageView />,
+      },
+      {
+        path: "movie/:id",
+        element: <MovieDetails />,
       },
     ],
   },
