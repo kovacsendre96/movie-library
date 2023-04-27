@@ -1,6 +1,7 @@
 import axios from "axios";
 import Movie from "../models/Movie";
-
+import RatingMovie from "../models/RatingMovie";
+import { toast } from "react-toastify";
 
 export default class MovieService {
   baseURL = import.meta.env.VITE_BASE_URL;
@@ -13,11 +14,34 @@ export default class MovieService {
       });
   }
 
-  async store(data: Movie) {
+  async store(data: RatingMovie) {
     return axios
       .post(`${this.baseURL}/api/movie-list`, data)
-      .then((response) => response.data)
+      .then((response) => {
+        toast.success("Film felvéve a listába", {
+          position: toast.POSITION.TOP_CENTER,
+          hideProgressBar: true,
+          autoClose: 1000,
+        });
+        return response.data;
+      })
       .catch((error) => {
+        if (error?.response?.status === 400) {
+          console.log(error);
+          toast.error("Ez a film már benne van a listádban", {
+            position: toast.POSITION.TOP_CENTER,
+            hideProgressBar: true,
+            autoClose: 1000,
+          });
+        } else {
+          console.log(error);
+          toast.error("Sikertelen felvétel", {
+            position: toast.POSITION.TOP_CENTER,
+            hideProgressBar: true,
+            autoClose: 1000,
+          });
+
+        }
         throw error;
       });
   }

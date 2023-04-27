@@ -18,7 +18,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }: MovieCardProps) => {
             <div className="flex flex-col hover:cursor-pointer">
               {movie.poster_path !== null ? (
                 <img
-                  className="w-32 h-40"
+                  className="w-32 h-40 object-cover"
                   src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                   alt=""
                 />
