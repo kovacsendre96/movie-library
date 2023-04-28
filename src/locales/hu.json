@@ -6,6 +6,12 @@
     "Search": "Keresés",
     "Type the movie...": "Írd be a filmet",
     "There are currently no results": "Jelenleg nincs találat",
-    "No year found": "Nem található évszám"
+    "No year found": "Nem található évszám",
+    "Movie added to the list": "Film felvéve a listába",
+    "This movie is already in your list": "Ez a film már benne van a listádban",
+    "Record failed": "Sikertelen felvétel",
+    "Rate": "Értékelem",
+    "Rating": "Értékelés",
+    "Save": "Mentés"
 
 }

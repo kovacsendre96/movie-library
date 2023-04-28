@@ -10,8 +10,11 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import Stack from "@mui/material/Stack";
+import { useTranslation } from "react-i18next";
 
 const MovieDetails = () => {
+  const { t }: { t: (key: string) => string } = useTranslation();
   const [movieDetails, setMovieDetails] = useState<Movie>();
   const [loading, setLoading] = useState<boolean>(true);
   const [ratedNumber, setRatedNumber] = useState(0);
@@ -20,24 +23,12 @@ const MovieDetails = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const style = {
-    position: "absolute" as "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 400,
-    bgcolor: "background.paper",
-    border: "2px solid #000",
-    boxShadow: 24,
-    p: 4,
-  };
-
   const tmdbService = new TMDBService();
   const myMoviesService = new MovieService();
 
   async function getMovieDetails() {
     const details = await tmdbService.show(Number(id), i18n.language);
-    console.log(details);
+ 
     setMovieDetails(details);
     setLoading(false);
   }
@@ -46,7 +37,7 @@ const MovieDetails = () => {
     setRatedNumber(e.target.value);
   };
 
-  console.log(ratedNumber);
+
   async function postMovie(movieDetails: Movie) {
     setOpen(false);
     const ratingMovie = new RatingMovie();
@@ -56,8 +47,6 @@ const MovieDetails = () => {
     ratingMovie.release_date = movieDetails.release_date;
     ratingMovie.vote_average = movieDetails.vote_average;
     ratingMovie.rate = ratedNumber;
-    console.log(movieDetails.release_date);
-    console.log(ratingMovie);
     await myMoviesService.store(ratingMovie);
   }
 
@@ -94,24 +83,46 @@ const MovieDetails = () => {
           </div>
         </div>
       )}
-      <Button onClick={handleOpen}>Értékelem</Button>
+      <Button onClick={handleOpen}>{t("Rate")}</Button>
       <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2" className="text-center">
-            Film értékelése
+        <Box className="shadow-xl border-2 border-black p-4 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 bg-slate-100">
+          <Typography
+            id="modal-modal-title"
+            variant="h6"
+            component="h2"
+            className="text-center"
+          >
+           {t("Rating")}
           </Typography>
-          <Typography className="text-center" id="modal-modal-description" sx={{ mt: 2 }}>
-            <input type="number"  onChange={handleInputChange} max={10} />
-            {/* itt a szerver oldalon is meg kellene oldani, hogy 10-nél nagyobb számot ne fogadjon el */}
+          <Typography
+            className="text-center flex justify-evenly"
+            id="modal-modal-description"
+            sx={{ mt: 2 }}
+          >
+            <Stack spacing={1}>
+              <Rating
+                name="half-rating"
+                onChange={handleInputChange}
+                defaultValue={ratedNumber}
+                precision={0.5}
+                max={10}
+                style={{ color: "blue" }}
+              />
+            </Stack>
+            {ratedNumber}
           </Typography>
-          <Typography className="text-center" id="modal-modal-description" sx={{ mt: 2 }}>
+          <Typography
+            className="text-center"
+            id="modal-modal-description"
+            sx={{ mt: 2 }}
+          >
             <button onClick={() => movieDetails && postMovie(movieDetails)}>
-              Mentés
+              {t("Save")}
             </button>
           </Typography>
         </Box>

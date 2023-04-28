@@ -2,6 +2,9 @@ import axios from "axios";
 import Movie from "../models/Movie";
 import RatingMovie from "../models/RatingMovie";
 import { toast } from "react-toastify";
+import i18n from "i18next";
+
+
 
 export default class MovieService {
   baseURL = import.meta.env.VITE_BASE_URL;
@@ -18,7 +21,7 @@ export default class MovieService {
     return axios
       .post(`${this.baseURL}/api/movie-list`, data)
       .then((response) => {
-        toast.success("Film felvéve a listába", {
+        toast.success(i18n.t("Movie added to the list"), {
           position: toast.POSITION.TOP_CENTER,
           hideProgressBar: true,
           autoClose: 1000,
@@ -28,19 +31,18 @@ export default class MovieService {
       .catch((error) => {
         if (error?.response?.status === 400) {
           console.log(error);
-          toast.error("Ez a film már benne van a listádban", {
+          toast.error(i18n.t("This movie is already in your list"), {
             position: toast.POSITION.TOP_CENTER,
             hideProgressBar: true,
             autoClose: 1000,
           });
         } else {
           console.log(error);
-          toast.error("Sikertelen felvétel", {
+          toast.error(i18n.t("Record failed"), {
             position: toast.POSITION.TOP_CENTER,
             hideProgressBar: true,
             autoClose: 1000,
           });
-
         }
         throw error;
       });
