@@ -6,5 +6,11 @@
     "Search": "Search",
     "Type the movie...": "Type the movie...",
     "There are currently no results": "There are currently no results",
-    "No year found": "No year found"
+    "No year found": "No year found",
+    "Movie added to the list": "Movie added to the list",
+    "This movie is already in your list": "This movie is already in your list",
+    "Record failed": "Record failed",
+    "Rate": "Rate",
+    "Rating": "Rating",
+    "Save": "Save"
 }

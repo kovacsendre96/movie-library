@@ -20,7 +20,7 @@ const MovieListView = () => {
   }, []);
 
   return (
-    <div className="flex h-full">
+    <div className="flex h-full overflow-auto">
       {!loading &&
         movies.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
     </div>

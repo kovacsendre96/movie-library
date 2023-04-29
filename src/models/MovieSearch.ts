@@ -11,3 +11,4 @@ export default class MovieSearch {
   movie_id = 0;
   popularity: any;
 }
+

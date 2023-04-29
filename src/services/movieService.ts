@@ -1,5 +1,9 @@
 import axios from "axios";
 import Movie from "../models/Movie";
+import RatingMovie from "../models/RatingMovie";
+import { toast } from "react-toastify";
+import i18n from "i18next";
+
 
 
 export default class MovieService {
@@ -13,11 +17,33 @@ export default class MovieService {
       });
   }
 
-  async store(data: Movie) {
+  async store(data: RatingMovie) {
     return axios
       .post(`${this.baseURL}/api/movie-list`, data)
-      .then((response) => response.data)
+      .then((response) => {
+        toast.success(i18n.t("Movie added to the list"), {
+          position: toast.POSITION.TOP_CENTER,
+          hideProgressBar: true,
+          autoClose: 1000,
+        });
+        return response.data;
+      })
       .catch((error) => {
+        if (error?.response?.status === 400) {
+          console.log(error);
+          toast.error(i18n.t("This movie is already in your list"), {
+            position: toast.POSITION.TOP_CENTER,
+            hideProgressBar: true,
+            autoClose: 1000,
+          });
+        } else {
+          console.log(error);
+          toast.error(i18n.t("Record failed"), {
+            position: toast.POSITION.TOP_CENTER,
+            hideProgressBar: true,
+            autoClose: 1000,
+          });
+        }
         throw error;
       });
   }
