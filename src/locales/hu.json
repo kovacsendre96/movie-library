@@ -10,8 +10,11 @@
     "Movie added to the list": "Film felvéve a listába",
     "This movie is already in your list": "Ez a film már benne van a listádban",
     "Record failed": "Sikertelen felvétel",
-    "Rate": "Értékelem",
+    "Add to List": "Hozzáadás a listához",
+    "rating": "értékelés",
     "Rating": "Értékelés",
-    "Save": "Mentés"
+    "Save": "Mentés",
+    "Show more": "Mutass többet",
+    "Show less": "Mutass kevesebbet"
 
 }
