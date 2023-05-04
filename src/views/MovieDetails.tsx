@@ -12,7 +12,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import Stack from "@mui/material/Stack";
 import { useTranslation } from "react-i18next";
-import imageNot from "../assets/images/imageNotAvailable.png"
+import imageNot from "../assets/images/imageNotAvailable.png";
 
 const MovieDetails = () => {
   const { t }: { t: (key: string) => string } = useTranslation();
@@ -65,27 +65,40 @@ const MovieDetails = () => {
     <div>
       {!loading && (
         <div className="text-white flex flex-col justify-center text-center">
-          <h3 className="text-3xl font-bold">{movieDetails?.title}</h3>
-         {i18n.language === "hu" && <h5 className="text-l font-bold">({movieDetails?.original_title})</h5>}
+          <h3 className="text-3xl font-bold">
+            {movieDetails?.title} (
+            {movieDetails?.release_date &&
+              new Date(movieDetails.release_date).getFullYear()}
+            )
+          </h3>{" "}
+          {i18n.language === "hu" && (
+            <h5 className="text-l font-bold">
+              ({movieDetails?.original_title})
+            </h5>
+          )}
           <div className="flex flex-col md:flex-row justify-around ">
             <div>
-              <div className="flex justify-center mt-4 mb-2">
+              <div className="flex justify-evenly mt-4 mb-2 items-center">
+                {movieDetails?.runtime}m
                 {movieDetails?.genres.map((genre) => (
-                  <div key={genre.id} className="mx-4">
+                  <div key={genre.id} className="mx-4 border border-white px-2">
                     {genre.name}
                   </div>
                 ))}
               </div>
-             {movieDetails?.backdrop_path ? <img
-                src={`https://image.tmdb.org/t/p/w500/${movieDetails?.backdrop_path}`}
-                alt=""
-                className="object-cover mb-4 flex justify-center w-full"
-              /> :
-              <img
-                src={imageNot}
-                alt=""
-                className="object-cover mb-4 flex justify-center w-full"
-              />} 
+              {movieDetails?.backdrop_path ? (
+                <img
+                  src={`https://image.tmdb.org/t/p/w500/${movieDetails?.backdrop_path}`}
+                  alt=""
+                  className="object-cover mb-4 flex justify-center w-full"
+                />
+              ) : (
+                <img
+                  src={movieDetails?.poster_path.length !== 0 ? `https://image.tmdb.org/t/p/w500/${movieDetails?.poster_path}` : imageNot}
+                  alt=""
+                  className="h-72 mb-4 mt-4 inline-block justify-center"
+                />
+              )}
               <div className="flex justify-center">
                 <Rating
                   name="read-only-10"
@@ -93,7 +106,6 @@ const MovieDetails = () => {
                   readOnly
                   max={10}
                   precision={0.1}
-                  
                 />
                 <h4>{movieDetails?.vote_average.toFixed(1)}/10</h4>
               </div>
@@ -153,13 +165,16 @@ const MovieDetails = () => {
                 </Box>
               </Modal>
             </div>
-            <div className="flex flex-col justify-center my-14 mx-4  md:w-72">
-              <h4 className="text-center">
+            <div className="flex flex-col justify-center my-14 mb-72 mx-4  md:w-72">
+              {movieDetails?.overview ? <h4 className="text-center">
                 {showFullOverview
                   ? movieDetails?.overview
                   : movieDetails?.overview &&
                     truncateOverview(movieDetails?.overview)}
-              </h4>
+              </h4> :
+              <h4 className="text-center text-xl flex justify-center">
+                {t("No description found")}
+              </h4>}
               {!showFullOverview &&
                 movieDetails?.overview &&
                 movieDetails.overview.length > 350 && (
