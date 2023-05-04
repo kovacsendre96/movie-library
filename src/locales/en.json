@@ -10,7 +10,10 @@
     "Movie added to the list": "Movie added to the list",
     "This movie is already in your list": "This movie is already in your list",
     "Record failed": "Record failed",
-    "Rate": "Rate",
+    "Add to List": "Add to List",
+    "rating": "rating",
     "Rating": "Rating",
-    "Save": "Save"
+    "Save": "Save",
+    "Show more": "Show more",
+    "Show less": "Show less"
 }
