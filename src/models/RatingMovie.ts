@@ -5,4 +5,5 @@ export default class RatingMovie {
     release_date="";
     vote_average=0;
     rate=0;
+    isFavourite=false //ezt fel kellene venni a backendbe is
   }
