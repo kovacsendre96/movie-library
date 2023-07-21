@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
+import MoviesPageView from "./MoviesPageView";
+import FavouritesPageView from "./FavouritesPageView";
 
 const MainPageView = () => {
+  
+
+
+
   return (
     <div className="text-center">
-      <div>MainPageView</div>
+      <div>
+        <MoviesPageView />
+        <FavouritesPageView />
+      </div>
     </div>
   );
 };

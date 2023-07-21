@@ -25,10 +25,7 @@ const Nav = () => {
       name: "Movies",
       path: "movies-page",
     },
-    {
-      name: "Series",
-      path: "series-page",
-    },
+
   ];
 
   return (
